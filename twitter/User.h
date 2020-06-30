@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 //User Properties
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *screenName;
+@property (nonatomic, strong) NSString *profilePicture;
 
 
 //Create initializer
