@@ -18,6 +18,9 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *tweetsArray;
 
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+
+
 
 @end
 
@@ -30,6 +33,22 @@
     self.tableView.delegate = self;
 
     
+    [self fetchTimeLine];
+
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    //add the refreshcontrol to the tableview
+    [self.tableView addSubview:self.refreshControl];
+    //would keep spinning if this method was not called... it calls fetchTimeLine on self
+    [self.refreshControl addTarget:self action:@selector(fetchTimeLine) forControlEvents:UIControlEventValueChanged];
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self.tableView reloadData];
+
+}
+
+- (void)fetchTimeLine
+{
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
@@ -38,34 +57,19 @@
             {
             }*/
             
-            
-            
-            
             self.tweetsArray = (NSMutableArray *)tweets;
-            NSLog(@"%d", self.tweetsArray.count);
-            
-            
-            //[self.tableView reloadData];
-
-
-            
+            //NSLog(@"%d", self.tweetsArray.count);
+        
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
+        [self.refreshControl endRefreshing];
         [self.tableView reloadData];
 
         
     }];
     
-    for(Tweet *current in self.tweetsArray)
-    {
-        NSString *testingString = current.text;
-        NSLog(@"%@", testingString);
-    }
     
-    NSLog(@"%d", self.tweetsArray.count);
-    [self.tableView reloadData];
-
 }
 
 - (void)didReceiveMemoryWarning {
