@@ -20,6 +20,7 @@
 		7F3F6ACE24AA7EFC005F28D5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F6ACD24AA7EFC005F28D5 /* User.m */; };
 		7F3F6AD124AA8036005F28D5 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F6AD024AA8036005F28D5 /* Tweet.m */; };
 		7F3F6AD724AA9CA8005F28D5 /* TweetCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F6AD624AA9CA8005F28D5 /* TweetCellTableViewCell.m */; };
+		7F3F6ADA24AC18A4005F28D5 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F6AD924AC18A4005F28D5 /* ComposeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		7F3F6AD024AA8036005F28D5 /* Tweet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		7F3F6AD524AA9CA8005F28D5 /* TweetCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCellTableViewCell.h; sourceTree = "<group>"; };
 		7F3F6AD624AA9CA8005F28D5 /* TweetCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCellTableViewCell.m; sourceTree = "<group>"; };
+		7F3F6AD824AC18A4005F28D5 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		7F3F6AD924AC18A4005F28D5 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +147,8 @@
 				6AD2790520BCC0380085BC29 /* LoginViewController.m */,
 				6AD2790720BCC04D0085BC29 /* TimelineViewController.h */,
 				6AD2790820BCC04D0085BC29 /* TimelineViewController.m */,
+				7F3F6AD824AC18A4005F28D5 /* ComposeViewController.h */,
+				7F3F6AD924AC18A4005F28D5 /* ComposeViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				7F3F6AD724AA9CA8005F28D5 /* TweetCellTableViewCell.m in Sources */,
 				6AD278F320BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */,
 				7F3F6ACE24AA7EFC005F28D5 /* User.m in Sources */,
+				7F3F6ADA24AC18A4005F28D5 /* ComposeViewController.m in Sources */,
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,
 				7F3F6AD124AA8036005F28D5 /* Tweet.m in Sources */,
 				6AD2790620BCC0380085BC29 /* LoginViewController.m in Sources */,
