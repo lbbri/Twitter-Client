@@ -14,6 +14,7 @@
 #import "Tweet.h"
 #import "ComposeViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "NSDate+DateTools.h"
 
 
 
@@ -115,7 +116,7 @@
 
     Tweet *tweet = self.tweetsArray[indexPath.row];
     //the property was weak
-    //NSLog(@" THis is the name %@", tweet.createdAtString);
+    NSLog(@" This long ago %@", tweet.createdAtString);
     
     cell.tweet = tweet;
     cell.nameLabel.text = tweet.user.name;
@@ -126,6 +127,11 @@
     
     cell.likesLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
     cell.retweetsLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
+    
+    [cell.retweetButton setSelected:tweet.retweeted];
+    [cell.likeButton setSelected:tweet.favorited];
+
+
     
     //get the profile picture url, delete the _normal for the blurry affect and change it into a URL
     NSString *clearProfilePic = [tweet.user.profilePicture

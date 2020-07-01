@@ -7,6 +7,7 @@
 //
 
 #import "Tweet.h"
+#import "NSDate+DateTools.h"
 
 @implementation Tweet
 
@@ -44,16 +45,20 @@
         NSString *createdAtOriginalString = dictionary[@"created_at"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         
-        //Configure teh input format to parse the date string
+        formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+
+        //Configure the input format to parse the date string
         NSDate *date = [formatter dateFromString:createdAtOriginalString];
-        
+
         //Configure output format
         formatter.dateStyle = NSDateFormatterShortStyle;
         formatter.timeStyle = NSDateFormatterNoStyle;
         
         //TODO: Converts date to string
         //self.createdAtString = [formatter stringFromDate:date];
-        self.createdAtString = createdAtOriginalString;
+        
+        //changes the date to how long ago it was 
+        self.createdAtString = date.shortTimeAgoSinceNow;
         
         
 
@@ -68,6 +73,8 @@
     {
         Tweet *tweet = [[Tweet alloc] initWithDictionary:dictionary];
         [tweets addObject:tweet];
+        //NSLog([NSString stringWithFormat:@"$%@", tweet.text]);
+
     }
     return tweets;
 }

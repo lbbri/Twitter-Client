@@ -61,6 +61,8 @@
 - (void) refreshData{
     
     self.likesLabel.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
+    [self.retweetButton setSelected:self.tweet.retweeted];
+
     
 }
 

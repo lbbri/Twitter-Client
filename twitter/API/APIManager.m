@@ -10,8 +10,9 @@
 #import "Tweet.h"
 
 static NSString * const baseURLString = @"https://api.twitter.com";
-static NSString * const consumerKey = // Enter your consumer key here
-static NSString * const consumerSecret = // Enter your consumer secret here
+static NSString * const consumerKey = @"hDuijYs1OXbCX7vsboJfUuNR8";
+static NSString * const consumerSecret = @"k0UAoyuMN0R6tNOOC6kle9wv0vMYtdk9t2HeaRkHLz0nWJ3BRV";
+
 
 @interface APIManager()
 
@@ -89,7 +90,7 @@ static NSString * const consumerSecret = // Enter your consumer secret here
     
     
 }
-
+//TODO: Create unretweet and unlike features
 - (void)favorite:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion{
 
     NSString *urlString = @"1.1/favorites/create.json";
