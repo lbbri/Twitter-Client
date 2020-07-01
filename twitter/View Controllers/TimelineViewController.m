@@ -115,6 +115,7 @@
     //the property was weak
     NSLog(@" THis is the name %@", tweet.createdAtString);
     
+    cell.tweet = tweet;
     cell.nameLabel.text = tweet.user.name;
     cell.handleLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
     
