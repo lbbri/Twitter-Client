@@ -8,10 +8,13 @@
 
 #import "TimelineViewController.h"
 #import "APIManager.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
 #import "TweetCellTableViewCell.h"
 #import "Tweet.h"
 #import "ComposeViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "NSDate+DateTools.h"
 
 
 
@@ -96,7 +99,7 @@
 
 //necessary for UITableViewSource implementation: gets # of rows
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"%d", self.tweetsArray.count);
+    //NSLog(@"%d", self.tweetsArray.count);
     return self.tweetsArray.count;
 }
 //necessary for UITableViewSource implementation: asks data source for a cell to insert
@@ -113,7 +116,7 @@
 
     Tweet *tweet = self.tweetsArray[indexPath.row];
     //the property was weak
-    NSLog(@" THis is the name %@", tweet.createdAtString);
+    NSLog(@" This long ago %@", tweet.createdAtString);
     
     cell.tweet = tweet;
     cell.nameLabel.text = tweet.user.name;
@@ -124,6 +127,11 @@
     
     cell.likesLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
     cell.retweetsLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
+    
+    [cell.retweetButton setSelected:tweet.retweeted];
+    [cell.likeButton setSelected:tweet.favorited];
+
+
     
     //get the profile picture url, delete the _normal for the blurry affect and change it into a URL
     NSString *clearProfilePic = [tweet.user.profilePicture
@@ -144,6 +152,22 @@
     [self.tweetsArray insertObject:tweet atIndex:0];
     [self.tableView reloadData];
 }
+
+- (IBAction)didTapLogout:(id)sender {
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
+    
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    
+    appDelegate.window.rootViewController = loginViewController;
+    
+    
+    [[APIManager shared] logout];
+    
+}
+
 
 
 
