@@ -27,8 +27,17 @@
 - (IBAction)tweetClick:(id)sender {
     
     NSString *newTweet = self.composedTweetView.text;
-    [[APIManager shared] postStatusWithText:newTweet completion:^(Tweet *posting, NSError *error) {
-        NSLog(@"Success");
+    [[APIManager shared] postStatusWithText:newTweet completion:^(Tweet *postingTweet, NSError *error) {
+        if(error)
+        {
+            NSLog(@"Error trying to compose Tweet: %@", error.localizedDescription);
+        }
+        else
+        {
+            [self.delegate didTweet:postingTweet];
+            NSLog(@"Success");
+
+        }
     }];
     
     [self dismissViewControllerAnimated:true completion:nil];
