@@ -13,8 +13,10 @@
 #import "TweetCellTableViewCell.h"
 #import "Tweet.h"
 #import "ComposeViewController.h"
+#import "TweetViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "NSDate+DateTools.h"
+
 
 
 
@@ -90,9 +92,25 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
+    
+    if([sender isKindOfClass:[TweetCellTableViewCell class]]){
+        
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath= [self.tableView indexPathForCell:tappedCell];
+        Tweet *tweet = self.tweetsArray[indexPath.row];
+        
+        TweetViewController *currentTVC = [segue destinationViewController];
+        currentTVC.tweet = tweet;
+        
+    }
+    else
+    {
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
+        
+    }
+    
 }
 
 
@@ -116,7 +134,7 @@
 
     Tweet *tweet = self.tweetsArray[indexPath.row];
     //the property was weak
-    NSLog(@" This long ago %@", tweet.createdAtString);
+    //NSLog(@" This long ago %@", tweet.createdAtString);
     
     cell.tweet = tweet;
     cell.nameLabel.text = tweet.user.name;
