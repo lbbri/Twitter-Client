@@ -20,26 +20,32 @@
     // Do any additional setup after loading the view.
 }
 - (IBAction)cancelClick:(id)sender {
+    //close out self
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
 
 - (IBAction)tweetClick:(id)sender {
     
+    //newtweet is waht is in the text field
     NSString *newTweet = self.composedTweetView.text;
+    
+    //API Call to post tweet
     [[APIManager shared] postStatusWithText:newTweet completion:^(Tweet *postingTweet, NSError *error) {
         if(error)
         {
-            NSLog(@"Error trying to compose Tweet: %@", error.localizedDescription);
+            //NSLog(@"Error trying to compose Tweet: %@", error.localizedDescription);
         }
         else
         {
+            //tells TimeLineViewController to insert Tweet in array and update timeline
             [self.delegate didTweet:postingTweet];
-            NSLog(@"Success");
+            //NSLog(@"Success");
 
         }
     }];
     
+    //close view controller after tweet is submitted
     [self dismissViewControllerAnimated:true completion:nil];
 
 }

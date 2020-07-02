@@ -45,8 +45,13 @@
         NSString *createdAtOriginalString = dictionary[@"created_at"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         
+        NSLog([NSString stringWithFormat: @"%@", createdAtOriginalString]);
+        
         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+        
+       // [formatter setDateFormat:@"yyyy-MM-dd"];
 
+        
         //Configure the input format to parse the date string
         NSDate *date = [formatter dateFromString:createdAtOriginalString];
 
@@ -59,6 +64,13 @@
         
         //changes the date to how long ago it was 
         self.createdAtString = date.shortTimeAgoSinceNow;
+        
+//        NSLog(@" This long ago %@", date);
+//
+//        formatter.dateFormat = @"HH:mm M/d/y";
+//        self.dateCreated = [formatter dateFromString:createdAtOriginalString];
+        
+        self.dateCreated = date;
         
         
 

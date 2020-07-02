@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    //set all the labels and buttons to their correct value
     self.nameLabel.text = self.tweet.user.name;
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", self.tweet.user.screenName];
     self.tweetLabel.text = self.tweet.text;
@@ -32,8 +32,7 @@
     [self.likeButton setSelected:self.tweet.favorited];
     
     
-    NSString *clearProfilePic = [self.tweet.user.profilePicture
-     stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    NSString *clearProfilePic = [self.tweet.user.profilePicture stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     
      NSURL *profilePicURL = [NSURL URLWithString: clearProfilePic];
      
@@ -41,15 +40,16 @@
      self.profilePicView.image = nil;
      [self.profilePicView setImageWithURL:profilePicURL];
     
-    // Do any additional setup after loading the view.
 }
 
 - (IBAction)didTapRetweet:(id)sender {
+    //sends a request to the API to retweet the current tweet
     [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
         if(error){
-             NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
+             //NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
         }
         else{
+            //update retweet properties for tweet
             self.tweet.retweeted = YES;
             self.tweet.retweetCount += 1;
             
@@ -61,11 +61,13 @@
 }
 
 - (IBAction)didTapLike:(id)sender {
+    //sends a request to the API to like the current tweet
     [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
         if(error){
-             NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+             //NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
         }
         else{
+            //update like properties for tweet
             self.tweet.favorited = YES;
             self.tweet.favoriteCount += 1;
             

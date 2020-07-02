@@ -394,8 +394,8 @@
                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="X7X-oD-wfo" secondAttribute="trailing" id="64h-lc-g3a"/>
-                            <constraint firstItem="X7X-oD-wfo" firstAttribute="top" secondItem="6CY-sv-h8j" secondAttribute="top" constant="88" id="EdP-qT-aMF"/>
                             <constraint firstItem="X7X-oD-wfo" firstAttribute="leading" secondItem="6CY-sv-h8j" secondAttribute="leading" id="LrP-Pg-XwG"/>
+                            <constraint firstItem="X7X-oD-wfo" firstAttribute="top" secondItem="zOv-g2-YLj" secondAttribute="top" id="hdX-jj-cze"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zOv-g2-YLj"/>
                     </view>

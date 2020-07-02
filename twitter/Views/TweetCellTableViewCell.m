@@ -23,11 +23,13 @@
 }
 - (IBAction)didTapLike:(id)sender {
     
+    //sends a request to the API to like the current tweet
     [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
         if(error){
              NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
         }
         else{
+            //update likes properties for tweet
             self.tweet.favorited = YES;
             self.tweet.favoriteCount += 1;
             
@@ -40,12 +42,13 @@
 }
 
 - (IBAction)didTapRetweet:(id)sender {
-    
+    //sends a request to the API to retweet the current tweet
     [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
         if(error){
              NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
         }
         else{
+            //update retweet properties for tweet
             self.tweet.retweeted = YES;
             self.tweet.retweetCount += 1;
             
@@ -57,13 +60,5 @@
     
 }
 
-
-- (void) refreshData{
-    
-    self.likesLabel.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
-    [self.retweetButton setSelected:self.tweet.retweeted];
-
-    
-}
 
 @end

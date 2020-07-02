@@ -39,7 +39,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 
-    
+    //gets current users most up to date timeline
     [self fetchTimeLine];
 
     
@@ -49,31 +49,29 @@
     //would keep spinning if this method was not called... it calls fetchTimeLine on self
     [self.refreshControl addTarget:self action:@selector(fetchTimeLine) forControlEvents:UIControlEventValueChanged];
     
+    
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView reloadData];
 
 }
 
-- (void)fetchTimeLine
-{
+- (void)fetchTimeLine {
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
-            NSLog(@"😎😎😎 Successfully loaded home timeline");
-            /*for (Tweet *dictionary in tweets)
-            {
-            }*/
+            //NSLog(@"😎😎😎 Successfully loaded home timeline");
             
+            //set Tweets array to the tweets returned from the API call
             self.tweetsArray = (NSMutableArray *)tweets;
-            //NSLog(@"%d", self.tweetsArray.count);
         
         } else {
-            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+            //NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
+        
+        //stop refreshing and load the table with your data
         [self.refreshControl endRefreshing];
         [self.tableView reloadData];
 
-        
     }];
     
     
@@ -85,14 +83,13 @@
 }
 
 
-//#pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    
+    //if you click on a tweet then...
     if([sender isKindOfClass:[TweetCellTableViewCell class]]){
         
         UITableViewCell *tappedCell = sender;
@@ -103,6 +100,7 @@
         currentTVC.tweet = tweet;
         
     }
+    //if you are clicking the compose button then...
     else
     {
         UINavigationController *navigationController = [segue destinationViewController];
@@ -114,28 +112,23 @@
 }
 
 
-
 //necessary for UITableViewSource implementation: gets # of rows
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //NSLog(@"%d", self.tweetsArray.count);
     return self.tweetsArray.count;
 }
 //necessary for UITableViewSource implementation: asks data source for a cell to insert
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
 
-    //use the Movie cell I set up on the storyboard
+    //use the Tweet cell that's set up on the storyboard
     TweetCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     
-    //load movie at indexPath from movies array into movie dictionary, so that we can access it's id's
-    //NSLog(@"%@", self.tweetsArray[indexPath.row]);
-    //Tweet *tweet = self.tweetsArray[indexPath.row];
-    //NSLog(@"%@", NSStringFromClass([self.tweetsArray[indexPath.row] class]));
-
-    Tweet *tweet = self.tweetsArray[indexPath.row];
-    //the property was weak
-    //NSLog(@" This long ago %@", tweet.createdAtString);
     
+    //this line was originally not working because tweetsArray had a weak property
+    Tweet *tweet = self.tweetsArray[indexPath.row];
+
+    
+    //set all the labels and buttons to their correct value
     cell.tweet = tweet;
     cell.nameLabel.text = tweet.user.name;
     cell.handleLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
@@ -165,7 +158,7 @@
     return cell;
 }
 
-
+//when user tweets something it is inserted into tweetsArray and the timeline is updated
 - (void)didTweet:(nonnull Tweet *)tweet {
     [self.tweetsArray insertObject:tweet atIndex:0];
     [self.tableView reloadData];
@@ -174,20 +167,14 @@
 - (IBAction)didTapLogout:(id)sender {
     
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
-    
     LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     
     appDelegate.window.rootViewController = loginViewController;
     
-    
     [[APIManager shared] logout];
     
 }
-
-
-
 
 
 @end
