@@ -50,23 +50,34 @@ Please list two areas of the assignment you'd like to **discuss further with you
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-  User sees app icon in home screen and styled launch screen
+  - [x] User sees app icon in home screen and styled launch screen
+  
 <img src='http://g.recordit.co/Q6YCnpp38n.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-  In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
-  User should display the relative timestamp for each tweet "8m", "7h"
-  User can tap the retweet and favorite buttons in a tweet cell to retweet and/or favorite a tweet.
-  Tweet Details Page: User can tap on a tweet to view it, with controls to retweet and favorite.
+
+  - [x] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
+  - [x] User should display the relative timestamp for each tweet "8m", "7h"
+  - [x] User can tap the retweet and favorite buttons in a tweet cell to retweet and/or favorite a tweet.
+  - [x] Tweet Details Page: User can tap on a tweet to view it, with controls to retweet and favorite.
+  
 <img src='http://g.recordit.co/nSjmZM3Spx.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-  User can view last 20 tweets from their home timeline 
-  User can pull to refresh.
+
+  - [x] User can view last 20 tweets from their home timeline 
+  - [x] User can pull to refresh.
+  
 <img src='http://g.recordit.co/RefWE35xBL.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-  User can compose a new tweet by tapping on a compose button.
+
+  - [x] User can compose a new tweet by tapping on a compose button.
+  
 <img src='http://g.recordit.co/6kDH4thXJ1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-  User can sign in using OAuth login flow
-  User can Logout
+
+  - [x] User can sign in using OAuth login flow
+  - [x] User can Logout
+  
 <img src='http://g.recordit.co/oLy1t0bGCg.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-  Using AutoLayout, the Tweet cell should adjust its layout for iPhone 11, Pro and SE device sizes as well as accommodate device rotation.
-<img src='http://g.recordit.co/LW5MhnGOSk.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+  - [x] Using AutoLayout, the Tweet cell should adjust its layout for iPhone 11, Pro and SE device sizes as well as accommodate device rotation.
+  
+<img src='http://g.recordit.co/Y7rNotBOQK.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [RecordIt](https://recordit.co/).
 
